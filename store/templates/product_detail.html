@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.title }} | GRYPP</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #111;
+        }
+        header {
+            background-color: #ffffff;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            height: 60px;
+        }
+        .logo a {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: #111;
+        }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 50px;
+        }
+        .product-image {
+            flex: 1;
+            max-width: 500px;
+        }
+        .product-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+        .product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .brand-label {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        .product-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+        }
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #111;
+        }
+        .product-description {
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 30px;
+        }
+        .size-selector {
+            margin-bottom: 30px;
+        }
+        .size-title {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .size-options {
+            display: flex;
+            gap: 10px;
+        }
+        .size-btn {
+            border: 1px solid #ccc;
+            background: white;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 2px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .size-btn:hover {
+            border-color: #111;
+            background-color: #f5f5f5;
+        }
+        .btn-add-cart {
+            background-color: #111;
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            max-width: 350px;
+            transition: background 0.2s;
+        }
+        .btn-add-cart:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+       <div class="logo">
+    <a href="{% url 'homepage' %}" style="display: flex; align-items: center; height: 100%;">
+        <img src="{% static 'images/logo.jpg' %}" alt="GRYPP Logo" style="height: 102px; width: auto; object-fit: contain; margin: -20px 0;">
+    </a>
+</div>
+        <nav>
+            <a href="{% url 'homepage' %}">Shop All</a>
+            <a href="#">New Arrivals</a>
+            <a href="#">Cart (0)</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="product-image">
+            {% if product.image_url %}
+                <img src="{{ product.image_url }}" alt="{{ product.title }}">
+            {% endif %}
+        </div>
+
+        <div class="product-info">
+            <div class="brand-label">Premium Streetwear</div>
+            <h1 class="product-title">{{ product.title }}</h1>
+            <div class="product-price">${{ product.price }}</div>
+            <p class="product-description">{{ product.description }}</p>
+
+            <div class="size-selector">
+                <div class="size-title">Select Size</div>
+                <div class="size-options">
+                    <button class="size-btn">S</button>
+                    <button class="size-btn">M</button>
+                    <button class="size-btn">L</button>
+                    <button class="size-btn">XL</button>
+                </div>
+            </div>
+
+            <button class="btn-add-cart">Add to Bag</button>
+        </div>
+    </div>
+
+</body>
+</html>
